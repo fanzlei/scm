@@ -14,7 +14,8 @@ int wei[]={0x01,0x02,0x04,0x08};
 //静态数码管显示
 void static_pile(unsigned char number){
 	if(number <= 9)
-	 P3 = duan[number];
+	 P2 = ~duan[number];
+
 }
 
 //动态数码管显示
