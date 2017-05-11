@@ -14,7 +14,7 @@ int wei[]={0x01,0x02,0x04,0x08};
 //¾²Ì¬ÊıÂë¹ÜÏÔÊ¾
 void static_pile(unsigned char number){
 	if(number <= 9)
-	 P2 = ~duan[number];
+	 P0 = ~duan[number];
 
 }
 
