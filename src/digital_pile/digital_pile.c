@@ -29,3 +29,39 @@ void digital_pile(){
 		}
 	}
 }
+
+void digital_pile_show_number(unsigned char n1,unsigned char n2,unsigned char n3,unsigned char n4){
+
+	if(n1 <= 9){
+		P1 = wei[3];
+		P0 = duan[n1];
+	}else{
+		P1 = wei[3];
+		P0 = 0x00;
+	}
+	delays(50);
+	if(n2 <= 9){
+		P1 = wei[2];
+		P0 = duan[n2];
+	}else{
+		P1 = wei[2];
+		P0 = 0x00;
+	}
+	delays(50);
+	if(n3 <= 9){
+		P1 = wei[1];
+		P0 = duan[n3];
+	}else{
+		P1 = wei[1];
+		P0 = 0x00;
+	}
+	delays(50);
+	if(n4 <= 9){
+		P1 = wei[0];
+		P0 = duan[n4];
+	}else{
+		P1 = wei[0];
+		P0 = 0x00;
+	}
+delays(50);
+}

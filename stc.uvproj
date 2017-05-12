@@ -144,7 +144,7 @@
             <RestoreMemoryDisplay>1</RestoreMemoryDisplay>
             <RestoreFunctions>0</RestoreFunctions>
             <RestoreToolbox>1</RestoreToolbox>
-            <RestoreTracepoints>1</RestoreTracepoints>
+            <RestoreTracepoints>0</RestoreTracepoints>
             <RestoreSysVw>1</RestoreSysVw>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
@@ -487,6 +487,16 @@
               <FileName>key.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\key\key.h</FilePath>
+            </File>
+            <File>
+              <FileName>key2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\key\key2.c</FilePath>
+            </File>
+            <File>
+              <FileName>key2.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\key\key2.h</FilePath>
             </File>
           </Files>
         </Group>
