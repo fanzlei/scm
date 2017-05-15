@@ -311,7 +311,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\src\beep;.\src\sys;.\src\led;.\src\relay;.\src\key;.\src\digital_pile</IncludePath>
+              <IncludePath>.\src\beep;.\src\sys;.\src\led;.\src\relay;.\src\key;.\src\digital_pile;.\src</IncludePath>
             </VariousControls>
           </C51>
           <Ax51>
@@ -372,6 +372,11 @@
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>reg52.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\reg52.h</FilePath>
             </File>
           </Files>
         </Group>
