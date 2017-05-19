@@ -22,8 +22,8 @@ void Delayms(uint ms)
 	}
 }
 
-//????,??????????,LCD?????
-//??????:RS = 0,RW = 1????????,D7=1??,D7=0???
+//判忙函数，课本上的代码没有判忙，故无法显示内容
+//1602硬件规定:RS = 0,RW = 1时可以读出忙信号,D7=1为忙,D7=0不忙
 uchar Busy_Check()
 {
  	uchar LCD_Status;
@@ -39,13 +39,15 @@ uchar Busy_Check()
 void writeCMD(uchar cmd){
 	uchar m;
 	while((Busy_Check()&0x80)==0x80);
-	RW = 0;//0???,1???
-	RS = 0;//0????,1????
+	RW = 0;//0代表写，1代表读
+	RS = 0;//0代表命令，1代表数据
+	
+	E = 1;//液晶使能
+	for(m-0;m<=2;m++);
 	LCD = cmd;
+	
 	for(m-0;m<=2;m++);
-	E = 1;//????
-	for(m-0;m<=2;m++);
-	E = 0;//????
+	E = 0;
 }
 
 void writeData(uchar c){
@@ -53,17 +55,19 @@ void writeData(uchar c){
 	while((Busy_Check()&0x80)==0x80);
 	RW = 0;
 	RS = 1;
+	
+	
+	E = 1;//液晶使能
+	for(m-0;m<=2;m++);
 	LCD = c;
 	for(m-0;m<=2;m++);
-	E = 1;//????
-	for(m-0;m<=2;m++);
-	E = 0;//????
+	E = 0;
 }
 
-//?????,?????????,???
+//液晶初始化
 void init(){
-	RW = 0;//??????
-	E = 0;//????
+	RW = 0;
+	E = 0;
 	writeCMD(0x38);
 	writeCMD(0x0c);
 	writeCMD(0x06);
@@ -71,19 +75,10 @@ void init(){
 	writeCMD(0x80);
 }
 
-void clear(void)//LCD??
-{
-  while((Busy_Check()&0x80)==0x80);
-  RS=0;
-  RW=0;
-  P0=0x01;
-  E=1;
-  E=0; 
-}
 
 void show_char(uchar row,uchar column,uchar c){
 	uchar m;
-	writeCMD(0x80+row*0x40+column);//???,?????
+	writeCMD(0x80+row*0x40+column);
 	for(m=0;m<252;m++);
 	writeData(c);
 }
@@ -91,7 +86,6 @@ void lcd1602(void)
  { 
 	 uchar i;
 	 init();
-	 
 	 for(i=0;i<9;i++){
 		show_char(0,i,tab[i]);
 	 }
