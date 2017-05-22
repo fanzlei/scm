@@ -311,7 +311,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\src\beep;.\src\sys;.\src\led;.\src\relay;.\src\key;.\src\digital_pile;.\src;.\src\interrupt;.\src\lcd</IncludePath>
+              <IncludePath>.\src\beep;.\src\sys;.\src\led;.\src\relay;.\src\key;.\src\digital_pile;.\src;.\src\interrupt;.\src\lcd;.\src\ad;.\src\serial_port</IncludePath>
             </VariousControls>
           </C51>
           <Ax51>
@@ -535,6 +535,36 @@
               <FileName>lcd1602.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\src\lcd\lcd1602.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>ad</GroupName>
+          <Files>
+            <File>
+              <FileName>adc0809.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\ad\adc0809.c</FilePath>
+            </File>
+            <File>
+              <FileName>adc0809.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\ad\adc0809.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>serial_port</GroupName>
+          <Files>
+            <File>
+              <FileName>serial_prot.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\serial_port\serial_prot.c</FilePath>
+            </File>
+            <File>
+              <FileName>serial_prot.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\serial_port\serial_prot.h</FilePath>
             </File>
           </Files>
         </Group>

@@ -7,7 +7,7 @@
 
 #include <reg51.h>
 #include <stdio.h>
-#include "lcd1602.h"
+#include "adc0809.h"
 void main(){
-	lcd1602();
+	adc0809();
 }

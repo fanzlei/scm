@@ -73,7 +73,7 @@ sbit IT0   = TCON^0;//Íâ²¿ÖÐ¶Ï0´¥·¢·½Ê½£º0ÎªµçÆ½¡¢1ÎªÏÂ½µÑØ
 /*  IEÖÐ¶ÏÔÊÐí¼Ä´æÆ÷  */
 sbit EA    = IE^7;//ÖÐ¶Ï×Ü¿ª¹Ø
 sbit ET2   = IE^5; //8052 ×¨ÓÃ
-sbit ES    = IE^4;
+sbit ES    = IE^4;//´®¿ÚÖÐ¶Ï
 sbit ET1   = IE^3;//¶¨Ê±Æ÷/¼ÆÊýÆ÷ÖÐ¶Ï1¿ª¹Ø
 sbit EX1   = IE^2;//Íâ²¿ÖÐ¶Ï1¿ª¹Ø
 sbit ET0   = IE^1;//¶¨Ê±Æ÷/¼ÆÊýÆ÷ÖÐ¶Ï0¿ª¹Ø
@@ -102,16 +102,35 @@ M1¡¢M0:¹¤×÷·½Ê½Ñ¡ÔñÎ»£¬00Îª¹¤×÷·½Ê½0£¬13Î»¶¨Ê±Æ÷/¼ÆÊýÆ÷£¬TH´æ·Å¸ß8Î»£¬TL´æ·ÅµÍ5Î
 /*  P3¿ÚµÄµÚ¶þ¹¦ÄÜ  */
 sbit RD    = P3^7;//Íâ²¿´æ´¢Æ÷¶ÁÑ¡Í¨ÐÅºÅ
 sbit WR    = P3^6;//Íâ²¿´æ´¢Æ÷Ð´Ñ¡Í¨ÐÅºÅ
-sbit T1    = P3^5;//Íâ²¿¿ØÖÆ¶¨Ê±Æ÷/¼ÆÊýÆ÷1µÄÆô¶¯£¨TMOD¼Ä´æÆ÷µÚ7Î»GATE = 1Ê±²ÅÓÐÐ§£©£¬1ÎªÆô¶¯£¬0Î»Í£Ö¹
-sbit T0    = P3^4;//Íâ²¿¿ØÖÆ¶¨Ê±Æ÷/¼ÆÊýÆ÷0µÄÆô¶¯£¨TMOD¼Ä´æÆ÷µÚ3Î»GATE = 1Ê±²ÅÓÐÐ§£©£¬1ÎªÆô¶¯£¬0Î»Í£Ö¹
-sbit INT1  = P3^3;//Íâ²¿ÖÐ¶Ï1ÊäÈë
-sbit INT0  = P3^2;//Íâ²¿ÖÐ¶Ï0ÊäÈë
+sbit T1    = P3^5;//¼ÆÊýÆ÷1Íâ²¿ÊäÈë
+sbit T0    = P3^4;//¼ÆÊýÆ÷0Íâ²¿ÊäÈë
+sbit INT1  = P3^3;//Íâ²¿ÖÐ¶Ï1ÊäÈë£¬¶¨Ê±Æ÷0µÄÃÅ¿ØÎ»
+sbit INT0  = P3^2;//Íâ²¿ÖÐ¶Ï0ÊäÈë£¬¶¨Ê±Æ÷1µÄÃÅ¿ØÎ»
 sbit TXD   = P3^1;//´®ÐÐÊä³ö
 sbit RXD   = P3^0;//´®ÐÐÊäÈë
 
+
+/*------------------SCON´®¿Ú¿ØÖÆ¼Ä´æÆ÷Ïê½â----------------
+¸´Î»Ê±È«²¿Çå0
+SM0=0	,SM1 = 0	·½Ê½0	Í¬²½ÒÆÎ»¼Ä´æÆ÷·½Ê½Êý¾Ý´Ó RXD ¶Ë´®ÐÐÊä³ö»òÊäÈë£¬Í¬²½ÐÅºÅ´Ó TXD ¶ËÊä³öÏÈ·¢ËÍ»ò½ÓÊÕ×îµÍÎ»£¬8Î»È«ÎªÊý¾Ý£¬ÎÞÆðÊ¼Í£Ö¹Î»£¬²¨ÌØÂÊ£ºÊ±ÖÓ/12
+SM0=0 ,SM1 = 1	·½Ê½1	10Î»UART£¬1Î»ÆðÊ¼Î»£¬8Î»Êý¾ÝÎ»£¬1Î»Í£Ö¹Î»£¬²¨ÌØÂÊ¿É±ä
+SM0=1 ,SM1 = 0	·½Ê½2	11Î»UART£¬1Î»ÆðÊ¼Î»£¬9Î»Êý¾ÝÎ»£¬1Î»Í£Ö¹Î»£¬²¨ÌØÂÊ£ºÊ±ÖÓ/32»òÊ±ÖÓ/64
+SM0=1 ,SM1 = 1	·½Ê½3	Í¬·½Ê½2,²¨ÌØÂÊ¿É±ä
+SM2£¬µÚ9Î»Êý¾ÝÎ»µÄ¹¦ÄÜÑ¡ÔñÎ»£¬SM2 = 0Ê±ÎÞÐ§£¬SM2 = 1Ê±£¬ÐèÒªµÚ9Î»Êý¾ÝÎ»Îª1²ÅÄÜ¼¤»îÖÐ¶Ï£¬·ñÔòÊý¾Ý½«±»¶ªÆú£¬Í¨¹ýSM2µÄÊ¹ÓÃ¿ÉÒÔÊµÏÖ´®¿Ú¶à·½Í¨ÐÅ
+REN£º´®ÐÐ½ÓÊÕÔÊÐíÎ»£¬1ÎªÔÊÐí
+TR8£º·¢ËÍÊý¾ÝµÄµÚ9Î»£¬¿ÉÒÔÓÃÀ´ÊµÏÖÆæÅ¼Ð£Ñé
+RB8£º½ÓÊÕÊý¾ÝµÄµÚ9Î»
+TI£º·¢ËÍÖÐ¶Ï±êÖ¾Î»£¬´®ÐÐ·¢ËÍÍê8Î»Êý¾ÝºóÓÉÓ²¼þÖÃ1£¬±ØÐëÓÉÈí¼þÇå0
+RI£º½ÓÊÕÖÐ¶Ï±êÖ¾Î»£¬´®ÐÐ½ÓÊÕÍê8Î»Êý¾ÝÊ±ÓÉÓ²¼þÖÃ1£¬±ØÐëÓÉÈí¼þÇå0
+
+PCON¼Ä´æÆ÷µÄÎ»SMOD=1¿ÉÒÔ¿ØÖÆ´®¿Ú¹¤×÷·½Ê½0¡¢1¡¢2µÄ²¨ÌØÂÊÌá¸ßÒ»±¶
+¹¤×÷·½Ê½1¡¢3µÄÊ±ºòµÄ²¨ÌØÂÊÓÉ¶¨Ê±Æ÷1µÄÒç³öÂÊÀ´¾ö¶¨
+*------------------SCON´®¿Ú¿ØÖÆ¼Ä´æÆ÷Ïê½â----------------/
+
+
 /*  SCON´®¿Ú¿ØÖÆ¼Ä´æÆ÷  */
-sbit SM0   = SCON^7;
-sbit SM1   = SCON^6;
+sbit SM0   = SCON^7;//
+sbit SM1   = SCON^6;//
 sbit SM2   = SCON^5;
 sbit REN   = SCON^4;
 sbit TB8   = SCON^3;
