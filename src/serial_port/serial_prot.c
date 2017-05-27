@@ -1,7 +1,10 @@
-#include "serial_port.h"
+#include "serial_prot.h"
 #include <reg52.h>
+sbit K1 = P1^4;
 
-void serial_port_send(unsigned char ch){
+void serial_port_send(){
+	unsigned char i = 0;
+unsigned int j;
 	//?????,????1??????
   TMOD=0x20;//???1???????2,,8?????????
   TH1=0XF4;
@@ -16,6 +19,15 @@ void serial_port_send(unsigned char ch){
   RI= 0;
   ES=1;
   EA=1;
-	SBUF = ch;
+	K1 = 1;
+	
+	while(1){
+		if(K1 == 0){
+			i++;
+			if(i > 9) i = 0;
+			SBUF = i;
+		}
+		for(j=0;j<100;j++);
+	}
 
 }

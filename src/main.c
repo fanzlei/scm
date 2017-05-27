@@ -5,9 +5,9 @@
  * Compiler:  Keil for 8051
  */
 
-#include <reg51.h>
+#include <reg52.h>
 #include <stdio.h>
-#include "adc0809.h"
+#include "step_motor.h"
 void main(){
-	adc0809();
+	step_motor();
 }

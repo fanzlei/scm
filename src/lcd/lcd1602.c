@@ -2,7 +2,7 @@
 LCD1602液晶显示
 使用HC6800 ES开发板，MS不显示内容
 */
-#include <reg51.h>
+#include <reg52.h>
 #include <stdio.h>
 #define uchar unsigned char
 #define uint unsigned int
